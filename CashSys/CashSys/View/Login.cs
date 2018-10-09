@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CashierSystem.View;
 
 namespace CashierSystem
 {
@@ -53,9 +54,20 @@ namespace CashierSystem
             var FieldName = UserNameCashierLogField.Text.ToString();
             var FieldPass = PasswordCashierLogField.Text.ToString();
 
-            if(FieldName.Equals(ModelName) && FieldPass.Equals(ModelPass))
+       
+            if (FieldName.Length == 0 && FieldPass.Length == 0)
             {
-                
+                MessageBox.Show("Не сте въвели някое от полетата !");
+            }
+            else if (FieldName.Equals(ModelName) && FieldPass.Equals(ModelPass))
+            {
+                this.Hide();
+                AdministrationPanel adminPanel = new AdministrationPanel();
+                adminPanel.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Въвели сте грешен user name или парола !");
             }
 
         }
