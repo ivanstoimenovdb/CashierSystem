@@ -1,0 +1,580 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CashierSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cashier">
+          <Key>
+            <PropertyRef Name="cashier_serial_id" />
+          </Key>
+          <Property Name="cashier_serial_id" Type="int" Nullable="false" />
+          <Property Name="cashier_user_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cashier_first_name" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="cashier_last_name" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="cashier_password" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="cashier_desk" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CashierSystem.dbo.CashierClientTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CashierClientTable">
+          <Key>
+            <PropertyRef Name="client_id" />
+            <PropertyRef Name="cashier_id" />
+          </Key>
+          <Property Name="client_id" Type="int" Nullable="false" />
+          <Property Name="cashier_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="category_id" />
+          </Key>
+          <Property Name="category_id" Type="int" Nullable="false" />
+          <Property Name="category_name" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="client_serial_number" />
+          </Key>
+          <Property Name="client_serial_number" Type="int" Nullable="false" />
+          <Property Name="client_egn" Type="int" Nullable="false" />
+          <Property Name="client_first_name" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="client_last_name" Type="varchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CashierSystem.dbo.ClientObligationTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ClientObligationTable">
+          <Key>
+            <PropertyRef Name="client_id" />
+            <PropertyRef Name="obligation_id" />
+          </Key>
+          <Property Name="client_id" Type="int" Nullable="false" />
+          <Property Name="obligation_id" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CashierSystem.dbo.ObligationPaymentTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ObligationPaymentTable">
+          <Key>
+            <PropertyRef Name="payment_id" />
+            <PropertyRef Name="obligation_id" />
+          </Key>
+          <Property Name="payment_id" Type="int" Nullable="false" />
+          <Property Name="obligation_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Obligations">
+          <Key>
+            <PropertyRef Name="obligation_number" />
+          </Key>
+          <Property Name="obligation_number" Type="int" Nullable="false" />
+          <Property Name="obligation_category_id" Type="int" Nullable="false" />
+          <Property Name="obligation_name" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="obligation_note" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="obligation_payments" Type="money" Nullable="false" />
+          <Property Name="obligation_status_id" Type="int" />
+        </EntityType>
+        <EntityType Name="ObligationStatusTable">
+          <Key>
+            <PropertyRef Name="obligation_status" />
+          </Key>
+          <Property Name="status_number" Type="int" Nullable="false" />
+          <Property Name="obligation_status" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="payments">
+          <Key>
+            <PropertyRef Name="payment_id" />
+          </Key>
+          <Property Name="payment_id" Type="int" Nullable="false" />
+          <Property Name="date_of_payment" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="amount_of_payment" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="status_id" />
+          </Key>
+          <Property Name="status_id" Type="int" Nullable="false" />
+          <Property Name="status_name" Type="varchar" MaxLength="40" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="belongsTo">
+          <End Role="Obligations" Type="Self.Obligations" Multiplicity="1" />
+          <End Role="ClientObligationTable" Type="Self.ClientObligationTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obligations">
+              <PropertyRef Name="obligation_number" />
+            </Principal>
+            <Dependent Role="ClientObligationTable">
+              <PropertyRef Name="obligation_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="has">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="ClientObligationTable" Type="Self.ClientObligationTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="client_serial_number" />
+            </Principal>
+            <Dependent Role="ClientObligationTable">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="hasCategory">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Obligations" Type="Self.Obligations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="category_id" />
+            </Principal>
+            <Dependent Role="Obligations">
+              <PropertyRef Name="obligation_category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="hasPayed">
+          <End Role="Obligations" Type="Self.Obligations" Multiplicity="1" />
+          <End Role="ObligationPaymentTable" Type="Self.ObligationPaymentTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Obligations">
+              <PropertyRef Name="obligation_number" />
+            </Principal>
+            <Dependent Role="ObligationPaymentTable">
+              <PropertyRef Name="obligation_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="hasStatus">
+          <End Role="ObligationStatusTable" Type="Self.ObligationStatusTable" Multiplicity="0..1" />
+          <End Role="Obligations" Type="Self.Obligations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ObligationStatusTable">
+              <PropertyRef Name="obligation_status" />
+            </Principal>
+            <Dependent Role="Obligations">
+              <PropertyRef Name="obligation_status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="isServedBy">
+          <End Role="Cashier" Type="Self.Cashier" Multiplicity="1" />
+          <End Role="CashierClientTable" Type="Self.CashierClientTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cashier">
+              <PropertyRef Name="cashier_serial_id" />
+            </Principal>
+            <Dependent Role="CashierClientTable">
+              <PropertyRef Name="cashier_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="IsStatus">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="ObligationStatusTable" Type="Self.ObligationStatusTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="status_id" />
+            </Principal>
+            <Dependent Role="ObligationStatusTable">
+              <PropertyRef Name="status_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="payed">
+          <End Role="payments" Type="Self.payments" Multiplicity="1" />
+          <End Role="ObligationPaymentTable" Type="Self.ObligationPaymentTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="payments">
+              <PropertyRef Name="payment_id" />
+            </Principal>
+            <Dependent Role="ObligationPaymentTable">
+              <PropertyRef Name="payment_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="serves">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="CashierClientTable" Type="Self.CashierClientTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="client_serial_number" />
+            </Principal>
+            <Dependent Role="CashierClientTable">
+              <PropertyRef Name="client_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CashierSystemModelStoreContainer">
+          <EntitySet Name="Cashier" EntityType="Self.Cashier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Obligations" EntityType="Self.Obligations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ObligationStatusTable" EntityType="Self.ObligationStatusTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="payments" EntityType="Self.payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CashierClientTable" EntityType="Self.CashierClientTable" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[CashierClientTable].[client_id] AS [client_id], 
+[CashierClientTable].[cashier_id] AS [cashier_id]
+FROM [dbo].[CashierClientTable] AS [CashierClientTable]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ClientObligationTable" EntityType="Self.ClientObligationTable" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ClientObligationTable].[client_id] AS [client_id], 
+[ClientObligationTable].[obligation_id] AS [obligation_id]
+FROM [dbo].[ClientObligationTable] AS [ClientObligationTable]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ObligationPaymentTable" EntityType="Self.ObligationPaymentTable" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[ObligationPaymentTable].[payment_id] AS [payment_id], 
+[ObligationPaymentTable].[obligation_id] AS [obligation_id]
+FROM [dbo].[ObligationPaymentTable] AS [ObligationPaymentTable]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="belongsTo" Association="Self.belongsTo">
+            <End Role="Obligations" EntitySet="Obligations" />
+            <End Role="ClientObligationTable" EntitySet="ClientObligationTable" />
+          </AssociationSet>
+          <AssociationSet Name="has" Association="Self.has">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="ClientObligationTable" EntitySet="ClientObligationTable" />
+          </AssociationSet>
+          <AssociationSet Name="hasCategory" Association="Self.hasCategory">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Obligations" EntitySet="Obligations" />
+          </AssociationSet>
+          <AssociationSet Name="hasPayed" Association="Self.hasPayed">
+            <End Role="Obligations" EntitySet="Obligations" />
+            <End Role="ObligationPaymentTable" EntitySet="ObligationPaymentTable" />
+          </AssociationSet>
+          <AssociationSet Name="hasStatus" Association="Self.hasStatus">
+            <End Role="ObligationStatusTable" EntitySet="ObligationStatusTable" />
+            <End Role="Obligations" EntitySet="Obligations" />
+          </AssociationSet>
+          <AssociationSet Name="isServedBy" Association="Self.isServedBy">
+            <End Role="Cashier" EntitySet="Cashier" />
+            <End Role="CashierClientTable" EntitySet="CashierClientTable" />
+          </AssociationSet>
+          <AssociationSet Name="IsStatus" Association="Self.IsStatus">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="ObligationStatusTable" EntitySet="ObligationStatusTable" />
+          </AssociationSet>
+          <AssociationSet Name="payed" Association="Self.payed">
+            <End Role="payments" EntitySet="payments" />
+            <End Role="ObligationPaymentTable" EntitySet="ObligationPaymentTable" />
+          </AssociationSet>
+          <AssociationSet Name="serves" Association="Self.serves">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="CashierClientTable" EntitySet="CashierClientTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CashierSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cashier">
+          <Key>
+            <PropertyRef Name="cashier_serial_id" />
+          </Key>
+          <Property Name="cashier_serial_id" Type="Int32" Nullable="false" />
+          <Property Name="cashier_user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cashier_first_name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cashier_last_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cashier_password" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cashier_desk" Type="Int32" />
+          <NavigationProperty Name="Client" Relationship="Self.CashierClientTable" FromRole="Cashier" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="category_id" />
+          </Key>
+          <Property Name="category_id" Type="Int32" Nullable="false" />
+          <Property Name="category_name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Obligations" Relationship="Self.hasCategory" FromRole="Category" ToRole="Obligations" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="client_serial_number" />
+          </Key>
+          <Property Name="client_serial_number" Type="Int32" Nullable="false" />
+          <Property Name="client_egn" Type="Int32" Nullable="false" />
+          <Property Name="client_first_name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="client_last_name" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cashier" Relationship="Self.CashierClientTable" FromRole="Client" ToRole="Cashier" />
+          <NavigationProperty Name="Obligations" Relationship="Self.ClientObligationTable" FromRole="Client" ToRole="Obligations" />
+        </EntityType>
+        <EntityType Name="Obligations">
+          <Key>
+            <PropertyRef Name="obligation_number" />
+          </Key>
+          <Property Name="obligation_number" Type="Int32" Nullable="false" />
+          <Property Name="obligation_category_id" Type="Int32" Nullable="false" />
+          <Property Name="obligation_name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="obligation_note" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="obligation_payments" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="obligation_status_id" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="Self.hasCategory" FromRole="Obligations" ToRole="Category" />
+          <NavigationProperty Name="ObligationStatusTable" Relationship="Self.hasStatus" FromRole="Obligations" ToRole="ObligationStatusTable" />
+          <NavigationProperty Name="Client" Relationship="Self.ClientObligationTable" FromRole="Obligations" ToRole="Client" />
+          <NavigationProperty Name="payments" Relationship="Self.ObligationPaymentTable" FromRole="Obligations" ToRole="payments" />
+        </EntityType>
+        <EntityType Name="ObligationStatusTable">
+          <Key>
+            <PropertyRef Name="obligation_status" />
+          </Key>
+          <Property Name="status_number" Type="Int32" Nullable="false" />
+          <Property Name="obligation_status" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Obligations" Relationship="Self.hasStatus" FromRole="ObligationStatusTable" ToRole="Obligations" />
+          <NavigationProperty Name="Status" Relationship="Self.IsStatus" FromRole="ObligationStatusTable" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="payments">
+          <Key>
+            <PropertyRef Name="payment_id" />
+          </Key>
+          <Property Name="payment_id" Type="Int32" Nullable="false" />
+          <Property Name="date_of_payment" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="amount_of_payment" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Obligations" Relationship="Self.ObligationPaymentTable" FromRole="payments" ToRole="Obligations" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="status_id" />
+          </Key>
+          <Property Name="status_id" Type="Int32" Nullable="false" />
+          <Property Name="status_name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ObligationStatusTable" Relationship="Self.IsStatus" FromRole="Status" ToRole="ObligationStatusTable" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="hasCategory">
+          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Obligations" Type="Self.Obligations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="category_id" />
+            </Principal>
+            <Dependent Role="Obligations">
+              <PropertyRef Name="obligation_category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="hasStatus">
+          <End Role="ObligationStatusTable" Type="Self.ObligationStatusTable" Multiplicity="0..1" />
+          <End Role="Obligations" Type="Self.Obligations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ObligationStatusTable">
+              <PropertyRef Name="obligation_status" />
+            </Principal>
+            <Dependent Role="Obligations">
+              <PropertyRef Name="obligation_status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="IsStatus">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="ObligationStatusTable" Type="Self.ObligationStatusTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="status_id" />
+            </Principal>
+            <Dependent Role="ObligationStatusTable">
+              <PropertyRef Name="status_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CashierClientTable">
+          <End Role="Cashier" Type="Self.Cashier" Multiplicity="*" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+        </Association>
+        <Association Name="ClientObligationTable">
+          <End Role="Obligations" Type="Self.Obligations" Multiplicity="*" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+        </Association>
+        <Association Name="ObligationPaymentTable">
+          <End Role="Obligations" Type="Self.Obligations" Multiplicity="*" />
+          <End Role="payments" Type="Self.payments" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="CashierSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cashier" EntityType="Self.Cashier" />
+          <EntitySet Name="Category" EntityType="Self.Category" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Obligations" EntityType="Self.Obligations" />
+          <EntitySet Name="ObligationStatusTable" EntityType="Self.ObligationStatusTable" />
+          <EntitySet Name="payments" EntityType="Self.payments" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="hasCategory" Association="Self.hasCategory">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Obligations" EntitySet="Obligations" />
+          </AssociationSet>
+          <AssociationSet Name="hasStatus" Association="Self.hasStatus">
+            <End Role="ObligationStatusTable" EntitySet="ObligationStatusTable" />
+            <End Role="Obligations" EntitySet="Obligations" />
+          </AssociationSet>
+          <AssociationSet Name="IsStatus" Association="Self.IsStatus">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="ObligationStatusTable" EntitySet="ObligationStatusTable" />
+          </AssociationSet>
+          <AssociationSet Name="CashierClientTable" Association="Self.CashierClientTable">
+            <End Role="Cashier" EntitySet="Cashier" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="ClientObligationTable" Association="Self.ClientObligationTable">
+            <End Role="Obligations" EntitySet="Obligations" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="ObligationPaymentTable" Association="Self.ObligationPaymentTable">
+            <End Role="Obligations" EntitySet="Obligations" />
+            <End Role="payments" EntitySet="payments" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CashierSystemModelStoreContainer" CdmEntityContainer="CashierSystemEntities">
+          <EntitySetMapping Name="Cashier">
+            <EntityTypeMapping TypeName="CashierSystemModel.Cashier">
+              <MappingFragment StoreEntitySet="Cashier">
+                <ScalarProperty Name="cashier_serial_id" ColumnName="cashier_serial_id" />
+                <ScalarProperty Name="cashier_user_name" ColumnName="cashier_user_name" />
+                <ScalarProperty Name="cashier_first_name" ColumnName="cashier_first_name" />
+                <ScalarProperty Name="cashier_last_name" ColumnName="cashier_last_name" />
+                <ScalarProperty Name="cashier_password" ColumnName="cashier_password" />
+                <ScalarProperty Name="cashier_desk" ColumnName="cashier_desk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="CashierSystemModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="category_name" ColumnName="category_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="CashierSystemModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="client_serial_number" ColumnName="client_serial_number" />
+                <ScalarProperty Name="client_egn" ColumnName="client_egn" />
+                <ScalarProperty Name="client_first_name" ColumnName="client_first_name" />
+                <ScalarProperty Name="client_last_name" ColumnName="client_last_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Obligations">
+            <EntityTypeMapping TypeName="CashierSystemModel.Obligations">
+              <MappingFragment StoreEntitySet="Obligations">
+                <ScalarProperty Name="obligation_number" ColumnName="obligation_number" />
+                <ScalarProperty Name="obligation_category_id" ColumnName="obligation_category_id" />
+                <ScalarProperty Name="obligation_name" ColumnName="obligation_name" />
+                <ScalarProperty Name="obligation_note" ColumnName="obligation_note" />
+                <ScalarProperty Name="obligation_payments" ColumnName="obligation_payments" />
+                <ScalarProperty Name="obligation_status_id" ColumnName="obligation_status_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ObligationStatusTable">
+            <EntityTypeMapping TypeName="CashierSystemModel.ObligationStatusTable">
+              <MappingFragment StoreEntitySet="ObligationStatusTable">
+                <ScalarProperty Name="status_number" ColumnName="status_number" />
+                <ScalarProperty Name="obligation_status" ColumnName="obligation_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payments">
+            <EntityTypeMapping TypeName="CashierSystemModel.payments">
+              <MappingFragment StoreEntitySet="payments">
+                <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+                <ScalarProperty Name="date_of_payment" ColumnName="date_of_payment" />
+                <ScalarProperty Name="amount_of_payment" ColumnName="amount_of_payment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="CashierSystemModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+                <ScalarProperty Name="status_name" ColumnName="status_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CashierSystemModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="CashierClientTable" TypeName="CashierSystemModel.CashierClientTable" StoreEntitySet="CashierClientTable">
+            <EndProperty Name="Cashier">
+              <ScalarProperty Name="cashier_serial_id" ColumnName="cashier_id" />
+            </EndProperty>
+            <EndProperty Name="Client">
+              <ScalarProperty Name="client_serial_number" ColumnName="client_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ClientObligationTable" TypeName="CashierSystemModel.ClientObligationTable" StoreEntitySet="ClientObligationTable">
+            <EndProperty Name="Obligations">
+              <ScalarProperty Name="obligation_number" ColumnName="obligation_id" />
+            </EndProperty>
+            <EndProperty Name="Client">
+              <ScalarProperty Name="client_serial_number" ColumnName="client_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ObligationPaymentTable" TypeName="CashierSystemModel.ObligationPaymentTable" StoreEntitySet="ObligationPaymentTable">
+            <EndProperty Name="Obligations">
+              <ScalarProperty Name="obligation_number" ColumnName="obligation_id" />
+            </EndProperty>
+            <EndProperty Name="payments">
+              <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
