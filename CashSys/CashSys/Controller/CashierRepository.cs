@@ -13,6 +13,7 @@ namespace CashSys.Controller
 
     class CashierRepository
     {
+      
         //This Mehtod get all cahiers and returns  list of type Cashier.
 
         public List<Cashier> GetCashier()
@@ -26,15 +27,23 @@ namespace CashSys.Controller
 
         //This Method add object of type Cashier to the table Cashier.
 
-        public Cashier AddCashier(Cashier cashier)
+
+        public void AddCashier(string FirstName, string LastName, string userName, string Pass)
         {
             var context = new CashierSystemEntities();
 
-            context.Cashier.Add(cashier);
+            Cashier addNewCashier = context.Cashier.Add
+                (
+                new Cashier
+                {
+                    cashier_first_name = FirstName,
+                    cashier_last_name = LastName,
+                    cashier_user_name = userName,
+                    cashier_password = Pass 
+                }
+                );
 
             context.SaveChanges();
-
-            return cashier;
         }
 
         //This Method Attach object of type Cashier to the context.
@@ -47,6 +56,7 @@ namespace CashSys.Controller
 
             context.SaveChanges();
         }
+
 
 
     }
