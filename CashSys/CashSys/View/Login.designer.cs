@@ -109,6 +109,7 @@
             this.PasswordCashierLogField.Name = "PasswordCashierLogField";
             this.PasswordCashierLogField.Size = new System.Drawing.Size(195, 20);
             this.PasswordCashierLogField.TabIndex = 4;
+            this.PasswordCashierLogField.TextChanged += new System.EventHandler(this.PasswordCashierLogField_TextChanged);
             // 
             // PasswordLabel
             // 
@@ -186,6 +187,7 @@
             this.ConfirmButtonReg.TabIndex = 10;
             this.ConfirmButtonReg.Text = "Регистрирай";
             this.ConfirmButtonReg.UseVisualStyleBackColor = true;
+            this.ConfirmButtonReg.Click += new System.EventHandler(this.ConfirmButtonReg_Click);
             // 
             // ConfirmPassCashierRegFiedl
             // 
@@ -242,6 +244,7 @@
             this.LnameCashierRegField.Name = "LnameCashierRegField";
             this.LnameCashierRegField.Size = new System.Drawing.Size(240, 20);
             this.LnameCashierRegField.TabIndex = 3;
+            this.LnameCashierRegField.TextChanged += new System.EventHandler(this.LnameCashierRegField_TextChanged);
             // 
             // LastNameLabel
             // 
