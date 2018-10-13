@@ -69,11 +69,13 @@ namespace CashierSystem
             **                                   Get model values                                    **
             ******************************************************************************************/
 
-            //Get data of Cashier table for user and pass.
+            //Get data of Cashier table colomn user name.
 
-            var User = cashier.GetCashier().SingleOrDefault(n => n.cashier_user_name == FieldName && n.cashier_password == FieldPass);
+            var ModelName = cashier.GetCashier();
 
-            
+            //Get data of Cashier table colomn password.
+
+            var ModelPass = cashier.GetCashier();
 
             /******************************************************************************************
             **                              Check field and model values                             **
@@ -87,7 +89,7 @@ namespace CashierSystem
             } 
             else
             {
-                if (User != null)
+                if (FieldName.Equals(ModelName) || FieldPass.Equals(ModelPass))
                 {
                     // Check model values with fields.
                     this.Hide();
@@ -107,19 +109,13 @@ namespace CashierSystem
         {
             var context = new CashierSystemEntities();
 
-            CashierRepository newCashier = new CashierRepository();
-
-          
-
             var FirstNameReg = NameCashierRegField.Text.ToString();
             var LastNameReg = LnameCashierRegField.Text.ToString();
             var UserNameReg = UserNameCashierRegField.Text.ToString();
             var PassReg = PasswordCashierRegField.Text.ToString();
             var PassConfig = ConfirmPassCashierRegFiedl.Text.ToString();
 
-            var OnlyUserName = newCashier.GetCashier().SingleOrDefault(n => n.cashier_user_name == UserNameReg)  ;
-
-
+            CashierRepository newCashier = new CashierRepository();
 
             if (FirstNameReg.Length == 0 || LastNameReg.Length == 0 || UserNameReg.Length == 0 || PassReg.Length == 0 || PassConfig.Length == 0)
             {
@@ -129,22 +125,12 @@ namespace CashierSystem
             {
                 if (PassReg.Equals(PassConfig))
                 {
-                    if (OnlyUserName != null)
-                    {
-                        MessageBox.Show("Такъв потребители.");
-                    }
-                    else
-                    {
-                        newCashier.AddCashier(FirstNameReg, LastNameReg, UserNameReg, PassReg);
-
-                        NameCashierRegField.Text = " ";
-                        LnameCashierRegField.Text = " ";
-                        UserNameCashierRegField.Text = " ";
-                        PasswordCashierRegField.Text = " ";
-                        ConfirmPassCashierRegFiedl.Text = " ";
-
-                        MessageBox.Show("Успешен запис !");
-                    }
+                    newCashier.AddCashier(FirstNameReg, LastNameReg, UserNameReg, PassReg);
+                    FirstNameReg = "";
+                    LastNameReg = "";
+                    UserNameReg = "";
+                    PassReg = "";
+                    PassConfig = "";
                 }
                 else
                 {
@@ -163,25 +149,6 @@ namespace CashierSystem
         private void PasswordCashierLogField_TextChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void LoginConteiner_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void RegistrationGroupBox_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ClearButtonReg_Click(object sender, EventArgs e)
-        {
-            NameCashierRegField.Text = " ";
-            LnameCashierRegField.Text = " ";
-            UserNameCashierRegField.Text = " ";
-            PasswordCashierRegField.Text = " ";
-            ConfirmPassCashierRegFiedl.Text = " ";
         }
     }
 }

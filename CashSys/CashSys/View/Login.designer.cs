@@ -92,7 +92,6 @@
             this.LoginConteiner.TabIndex = 0;
             this.LoginConteiner.TabStop = false;
             this.LoginConteiner.Text = "Вписване";
-            this.LoginConteiner.Enter += new System.EventHandler(this.LoginConteiner_Enter);
             // 
             // SubmitButtonLog
             // 
@@ -170,7 +169,6 @@
             this.RegistrationGroupBox.TabIndex = 0;
             this.RegistrationGroupBox.TabStop = false;
             this.RegistrationGroupBox.Text = "Регистрация";
-            this.RegistrationGroupBox.Enter += new System.EventHandler(this.RegistrationGroupBox_Enter);
             // 
             // ClearButtonReg
             // 
@@ -180,7 +178,6 @@
             this.ClearButtonReg.TabIndex = 11;
             this.ClearButtonReg.Text = "Изчисти";
             this.ClearButtonReg.UseVisualStyleBackColor = true;
-            this.ClearButtonReg.Click += new System.EventHandler(this.ClearButtonReg_Click);
             // 
             // ConfirmButtonReg
             // 
