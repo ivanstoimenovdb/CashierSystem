@@ -178,6 +178,7 @@
             this.ClearButtonReg.TabIndex = 11;
             this.ClearButtonReg.Text = "Изчисти";
             this.ClearButtonReg.UseVisualStyleBackColor = true;
+            this.ClearButtonReg.Click += new System.EventHandler(this.ClearButtonReg_Click);
             // 
             // ConfirmButtonReg
             // 

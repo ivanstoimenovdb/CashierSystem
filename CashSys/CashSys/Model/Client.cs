@@ -16,8 +16,8 @@ namespace CashSys.Model
     {
         public Client()
         {
-            this.Cashier = new HashSet<Cashier>();
             this.Obligations = new HashSet<Obligations>();
+            this.Cashier = new HashSet<Cashier>();
         }
     
         public int client_serial_number { get; set; }
@@ -25,7 +25,7 @@ namespace CashSys.Model
         public string client_first_name { get; set; }
         public string client_last_name { get; set; }
     
-        public virtual ICollection<Cashier> Cashier { get; set; }
         public virtual ICollection<Obligations> Obligations { get; set; }
+        public virtual ICollection<Cashier> Cashier { get; set; }
     }
 }

@@ -44,48 +44,48 @@
             this.ClientNumber = new System.Windows.Forms.Label();
             this.SignObligationsTab = new System.Windows.Forms.TabPage();
             this.SignOblGroupBox = new System.Windows.Forms.GroupBox();
+            this.ClearSignOblBtn = new System.Windows.Forms.Button();
+            this.ConfirmSignOblBtn = new System.Windows.Forms.Button();
+            this.CategoryOblSignOblField = new System.Windows.Forms.TextBox();
+            this.ClientNumberSignOblField = new System.Windows.Forms.TextBox();
+            this.NameOfOblSignOblField = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.NameOfOblSignOblField = new System.Windows.Forms.TextBox();
-            this.ClientNumberSignOblField = new System.Windows.Forms.TextBox();
-            this.CategoryOblSignOblField = new System.Windows.Forms.TextBox();
-            this.ConfirmSignOblBtn = new System.Windows.Forms.Button();
-            this.ClearSignOblBtn = new System.Windows.Forms.Button();
             this.SignUserTab = new System.Windows.Forms.TabPage();
-            this.InfoFormTab = new System.Windows.Forms.TabPage();
             this.SignUserGroupBox = new System.Windows.Forms.GroupBox();
-            this.SignUserFirstNameLabel = new System.Windows.Forms.Label();
-            this.SignUserLastNameLabel = new System.Windows.Forms.Label();
-            this.SignUserEgnLabel = new System.Windows.Forms.Label();
-            this.SignUserFirstNameField = new System.Windows.Forms.TextBox();
-            this.SignUserLastNameField = new System.Windows.Forms.TextBox();
-            this.SignUserEgnField = new System.Windows.Forms.TextBox();
-            this.SignUserButton = new System.Windows.Forms.Button();
-            this.SignUserGeneratedClientNumberLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SignUserClrBtn = new System.Windows.Forms.Button();
+            this.GenClientNSignUser = new System.Windows.Forms.TextBox();
+            this.SignUserGeneratedClientNumberLabel = new System.Windows.Forms.Label();
+            this.SignUserButton = new System.Windows.Forms.Button();
+            this.SignUserEgnField = new System.Windows.Forms.TextBox();
+            this.SignUserLastNameField = new System.Windows.Forms.TextBox();
+            this.SignUserFirstNameField = new System.Windows.Forms.TextBox();
+            this.SignUserEgnLabel = new System.Windows.Forms.Label();
+            this.SignUserLastNameLabel = new System.Windows.Forms.Label();
+            this.SignUserFirstNameLabel = new System.Windows.Forms.Label();
+            this.InfoFormTab = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.InfoOblFirstNameLabel = new System.Windows.Forms.Label();
-            this.InfoOblLNameLabel = new System.Windows.Forms.Label();
-            this.InfoOblClientNLabel = new System.Windows.Forms.Label();
-            this.InfoOblEGNLabel = new System.Windows.Forms.Label();
-            this.InfoOblFirstNameField = new System.Windows.Forms.TextBox();
-            this.InfoOblLastNameField = new System.Windows.Forms.TextBox();
-            this.InfoOblEgnField = new System.Windows.Forms.TextBox();
-            this.InfoOblCliNumField = new System.Windows.Forms.TextBox();
-            this.InfoOblGetInfoBtn = new System.Windows.Forms.Button();
-            this.InfoOblClrBtn = new System.Windows.Forms.Button();
             this.InfoOblResultRichBox = new System.Windows.Forms.RichTextBox();
+            this.InfoOblClrBtn = new System.Windows.Forms.Button();
+            this.InfoOblGetInfoBtn = new System.Windows.Forms.Button();
+            this.InfoOblCliNumField = new System.Windows.Forms.TextBox();
+            this.InfoOblEgnField = new System.Windows.Forms.TextBox();
+            this.InfoOblLastNameField = new System.Windows.Forms.TextBox();
+            this.InfoOblFirstNameField = new System.Windows.Forms.TextBox();
+            this.InfoOblEGNLabel = new System.Windows.Forms.Label();
+            this.InfoOblClientNLabel = new System.Windows.Forms.Label();
+            this.InfoOblLNameLabel = new System.Windows.Forms.Label();
+            this.InfoOblFirstNameLabel = new System.Windows.Forms.Label();
             this.AdminTab.SuspendLayout();
             this.PaymentsTab.SuspendLayout();
             this.PaymentsGroupBox.SuspendLayout();
             this.SignObligationsTab.SuspendLayout();
             this.SignOblGroupBox.SuspendLayout();
             this.SignUserTab.SuspendLayout();
-            this.InfoFormTab.SuspendLayout();
             this.SignUserGroupBox.SuspendLayout();
+            this.InfoFormTab.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -253,6 +253,45 @@
             this.SignOblGroupBox.TabStop = false;
             this.SignOblGroupBox.Text = "Вписване";
             // 
+            // ClearSignOblBtn
+            // 
+            this.ClearSignOblBtn.Location = new System.Drawing.Point(347, 159);
+            this.ClearSignOblBtn.Name = "ClearSignOblBtn";
+            this.ClearSignOblBtn.Size = new System.Drawing.Size(119, 23);
+            this.ClearSignOblBtn.TabIndex = 8;
+            this.ClearSignOblBtn.Text = "Изчисти";
+            this.ClearSignOblBtn.UseVisualStyleBackColor = true;
+            // 
+            // ConfirmSignOblBtn
+            // 
+            this.ConfirmSignOblBtn.Location = new System.Drawing.Point(209, 159);
+            this.ConfirmSignOblBtn.Name = "ConfirmSignOblBtn";
+            this.ConfirmSignOblBtn.Size = new System.Drawing.Size(120, 23);
+            this.ConfirmSignOblBtn.TabIndex = 7;
+            this.ConfirmSignOblBtn.Text = "Впиши задължение";
+            this.ConfirmSignOblBtn.UseVisualStyleBackColor = true;
+            // 
+            // CategoryOblSignOblField
+            // 
+            this.CategoryOblSignOblField.Location = new System.Drawing.Point(209, 106);
+            this.CategoryOblSignOblField.Name = "CategoryOblSignOblField";
+            this.CategoryOblSignOblField.Size = new System.Drawing.Size(257, 20);
+            this.CategoryOblSignOblField.TabIndex = 6;
+            // 
+            // ClientNumberSignOblField
+            // 
+            this.ClientNumberSignOblField.Location = new System.Drawing.Point(209, 82);
+            this.ClientNumberSignOblField.Name = "ClientNumberSignOblField";
+            this.ClientNumberSignOblField.Size = new System.Drawing.Size(257, 20);
+            this.ClientNumberSignOblField.TabIndex = 5;
+            // 
+            // NameOfOblSignOblField
+            // 
+            this.NameOfOblSignOblField.Location = new System.Drawing.Point(209, 56);
+            this.NameOfOblSignOblField.Name = "NameOfOblSignOblField";
+            this.NameOfOblSignOblField.Size = new System.Drawing.Size(257, 20);
+            this.NameOfOblSignOblField.TabIndex = 4;
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -288,45 +327,6 @@
             this.label4.Size = new System.Drawing.Size(0, 13);
             this.label4.TabIndex = 0;
             // 
-            // NameOfOblSignOblField
-            // 
-            this.NameOfOblSignOblField.Location = new System.Drawing.Point(209, 56);
-            this.NameOfOblSignOblField.Name = "NameOfOblSignOblField";
-            this.NameOfOblSignOblField.Size = new System.Drawing.Size(257, 20);
-            this.NameOfOblSignOblField.TabIndex = 4;
-            // 
-            // ClientNumberSignOblField
-            // 
-            this.ClientNumberSignOblField.Location = new System.Drawing.Point(209, 82);
-            this.ClientNumberSignOblField.Name = "ClientNumberSignOblField";
-            this.ClientNumberSignOblField.Size = new System.Drawing.Size(257, 20);
-            this.ClientNumberSignOblField.TabIndex = 5;
-            // 
-            // CategoryOblSignOblField
-            // 
-            this.CategoryOblSignOblField.Location = new System.Drawing.Point(209, 106);
-            this.CategoryOblSignOblField.Name = "CategoryOblSignOblField";
-            this.CategoryOblSignOblField.Size = new System.Drawing.Size(257, 20);
-            this.CategoryOblSignOblField.TabIndex = 6;
-            // 
-            // ConfirmSignOblBtn
-            // 
-            this.ConfirmSignOblBtn.Location = new System.Drawing.Point(209, 159);
-            this.ConfirmSignOblBtn.Name = "ConfirmSignOblBtn";
-            this.ConfirmSignOblBtn.Size = new System.Drawing.Size(120, 23);
-            this.ConfirmSignOblBtn.TabIndex = 7;
-            this.ConfirmSignOblBtn.Text = "Впиши задължение";
-            this.ConfirmSignOblBtn.UseVisualStyleBackColor = true;
-            // 
-            // ClearSignOblBtn
-            // 
-            this.ClearSignOblBtn.Location = new System.Drawing.Point(347, 159);
-            this.ClearSignOblBtn.Name = "ClearSignOblBtn";
-            this.ClearSignOblBtn.Size = new System.Drawing.Size(119, 23);
-            this.ClearSignOblBtn.TabIndex = 8;
-            this.ClearSignOblBtn.Text = "Изчисти";
-            this.ClearSignOblBtn.UseVisualStyleBackColor = true;
-            // 
             // SignUserTab
             // 
             this.SignUserTab.Controls.Add(this.SignUserGroupBox);
@@ -337,20 +337,10 @@
             this.SignUserTab.Text = "Вписване на потребители";
             this.SignUserTab.UseVisualStyleBackColor = true;
             // 
-            // InfoFormTab
-            // 
-            this.InfoFormTab.Controls.Add(this.groupBox3);
-            this.InfoFormTab.Location = new System.Drawing.Point(4, 22);
-            this.InfoFormTab.Name = "InfoFormTab";
-            this.InfoFormTab.Size = new System.Drawing.Size(567, 288);
-            this.InfoFormTab.TabIndex = 3;
-            this.InfoFormTab.Text = "Информация за задължения";
-            this.InfoFormTab.UseVisualStyleBackColor = true;
-            // 
             // SignUserGroupBox
             // 
             this.SignUserGroupBox.Controls.Add(this.SignUserClrBtn);
-            this.SignUserGroupBox.Controls.Add(this.textBox1);
+            this.SignUserGroupBox.Controls.Add(this.GenClientNSignUser);
             this.SignUserGroupBox.Controls.Add(this.SignUserGeneratedClientNumberLabel);
             this.SignUserGroupBox.Controls.Add(this.SignUserButton);
             this.SignUserGroupBox.Controls.Add(this.SignUserEgnField);
@@ -366,62 +356,22 @@
             this.SignUserGroupBox.TabStop = false;
             this.SignUserGroupBox.Text = "Вписване на потребители";
             // 
-            // SignUserFirstNameLabel
+            // SignUserClrBtn
             // 
-            this.SignUserFirstNameLabel.AutoSize = true;
-            this.SignUserFirstNameLabel.Location = new System.Drawing.Point(99, 56);
-            this.SignUserFirstNameLabel.Name = "SignUserFirstNameLabel";
-            this.SignUserFirstNameLabel.Size = new System.Drawing.Size(32, 13);
-            this.SignUserFirstNameLabel.TabIndex = 0;
-            this.SignUserFirstNameLabel.Text = "Име:";
+            this.SignUserClrBtn.Location = new System.Drawing.Point(285, 172);
+            this.SignUserClrBtn.Name = "SignUserClrBtn";
+            this.SignUserClrBtn.Size = new System.Drawing.Size(92, 23);
+            this.SignUserClrBtn.TabIndex = 9;
+            this.SignUserClrBtn.Text = "Изчисти";
+            this.SignUserClrBtn.UseVisualStyleBackColor = true;
+            this.SignUserClrBtn.Click += new System.EventHandler(this.SignUserClrBtn_Click);
             // 
-            // SignUserLastNameLabel
+            // GenClientNSignUser
             // 
-            this.SignUserLastNameLabel.AutoSize = true;
-            this.SignUserLastNameLabel.Location = new System.Drawing.Point(72, 83);
-            this.SignUserLastNameLabel.Name = "SignUserLastNameLabel";
-            this.SignUserLastNameLabel.Size = new System.Drawing.Size(59, 13);
-            this.SignUserLastNameLabel.TabIndex = 1;
-            this.SignUserLastNameLabel.Text = "Фамилия:";
-            // 
-            // SignUserEgnLabel
-            // 
-            this.SignUserEgnLabel.AutoSize = true;
-            this.SignUserEgnLabel.Location = new System.Drawing.Point(99, 110);
-            this.SignUserEgnLabel.Name = "SignUserEgnLabel";
-            this.SignUserEgnLabel.Size = new System.Drawing.Size(31, 13);
-            this.SignUserEgnLabel.TabIndex = 2;
-            this.SignUserEgnLabel.Text = "ЕГН:";
-            // 
-            // SignUserFirstNameField
-            // 
-            this.SignUserFirstNameField.Location = new System.Drawing.Point(137, 53);
-            this.SignUserFirstNameField.Name = "SignUserFirstNameField";
-            this.SignUserFirstNameField.Size = new System.Drawing.Size(240, 20);
-            this.SignUserFirstNameField.TabIndex = 3;
-            // 
-            // SignUserLastNameField
-            // 
-            this.SignUserLastNameField.Location = new System.Drawing.Point(137, 80);
-            this.SignUserLastNameField.Name = "SignUserLastNameField";
-            this.SignUserLastNameField.Size = new System.Drawing.Size(240, 20);
-            this.SignUserLastNameField.TabIndex = 4;
-            // 
-            // SignUserEgnField
-            // 
-            this.SignUserEgnField.Location = new System.Drawing.Point(137, 107);
-            this.SignUserEgnField.Name = "SignUserEgnField";
-            this.SignUserEgnField.Size = new System.Drawing.Size(240, 20);
-            this.SignUserEgnField.TabIndex = 5;
-            // 
-            // SignUserButton
-            // 
-            this.SignUserButton.Location = new System.Drawing.Point(137, 172);
-            this.SignUserButton.Name = "SignUserButton";
-            this.SignUserButton.Size = new System.Drawing.Size(141, 23);
-            this.SignUserButton.TabIndex = 6;
-            this.SignUserButton.Text = "Вписване на потребител";
-            this.SignUserButton.UseVisualStyleBackColor = true;
+            this.GenClientNSignUser.Location = new System.Drawing.Point(137, 134);
+            this.GenClientNSignUser.Name = "GenClientNSignUser";
+            this.GenClientNSignUser.Size = new System.Drawing.Size(240, 20);
+            this.GenClientNSignUser.TabIndex = 8;
             // 
             // SignUserGeneratedClientNumberLabel
             // 
@@ -432,21 +382,74 @@
             this.SignUserGeneratedClientNumberLabel.TabIndex = 7;
             this.SignUserGeneratedClientNumberLabel.Text = "Ген. Клиент. номер:";
             // 
-            // textBox1
+            // SignUserButton
             // 
-            this.textBox1.Location = new System.Drawing.Point(137, 134);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(240, 20);
-            this.textBox1.TabIndex = 8;
+            this.SignUserButton.Location = new System.Drawing.Point(137, 172);
+            this.SignUserButton.Name = "SignUserButton";
+            this.SignUserButton.Size = new System.Drawing.Size(141, 23);
+            this.SignUserButton.TabIndex = 6;
+            this.SignUserButton.Text = "Вписване на потребител";
+            this.SignUserButton.UseVisualStyleBackColor = true;
+            this.SignUserButton.Click += new System.EventHandler(this.SignUserButton_Click);
             // 
-            // SignUserClrBtn
+            // SignUserEgnField
             // 
-            this.SignUserClrBtn.Location = new System.Drawing.Point(285, 172);
-            this.SignUserClrBtn.Name = "SignUserClrBtn";
-            this.SignUserClrBtn.Size = new System.Drawing.Size(92, 23);
-            this.SignUserClrBtn.TabIndex = 9;
-            this.SignUserClrBtn.Text = "Изчисти";
-            this.SignUserClrBtn.UseVisualStyleBackColor = true;
+            this.SignUserEgnField.Location = new System.Drawing.Point(137, 107);
+            this.SignUserEgnField.Name = "SignUserEgnField";
+            this.SignUserEgnField.Size = new System.Drawing.Size(240, 20);
+            this.SignUserEgnField.TabIndex = 5;
+            // 
+            // SignUserLastNameField
+            // 
+            this.SignUserLastNameField.Location = new System.Drawing.Point(137, 80);
+            this.SignUserLastNameField.Name = "SignUserLastNameField";
+            this.SignUserLastNameField.Size = new System.Drawing.Size(240, 20);
+            this.SignUserLastNameField.TabIndex = 4;
+            // 
+            // SignUserFirstNameField
+            // 
+            this.SignUserFirstNameField.Location = new System.Drawing.Point(137, 53);
+            this.SignUserFirstNameField.Name = "SignUserFirstNameField";
+            this.SignUserFirstNameField.Size = new System.Drawing.Size(240, 20);
+            this.SignUserFirstNameField.TabIndex = 3;
+            this.SignUserFirstNameField.TextChanged += new System.EventHandler(this.SignUserFirstNameField_TextChanged);
+            // 
+            // SignUserEgnLabel
+            // 
+            this.SignUserEgnLabel.AutoSize = true;
+            this.SignUserEgnLabel.Location = new System.Drawing.Point(99, 110);
+            this.SignUserEgnLabel.Name = "SignUserEgnLabel";
+            this.SignUserEgnLabel.Size = new System.Drawing.Size(31, 13);
+            this.SignUserEgnLabel.TabIndex = 2;
+            this.SignUserEgnLabel.Text = "ЕГН:";
+            // 
+            // SignUserLastNameLabel
+            // 
+            this.SignUserLastNameLabel.AutoSize = true;
+            this.SignUserLastNameLabel.Location = new System.Drawing.Point(72, 83);
+            this.SignUserLastNameLabel.Name = "SignUserLastNameLabel";
+            this.SignUserLastNameLabel.Size = new System.Drawing.Size(59, 13);
+            this.SignUserLastNameLabel.TabIndex = 1;
+            this.SignUserLastNameLabel.Text = "Фамилия:";
+            // 
+            // SignUserFirstNameLabel
+            // 
+            this.SignUserFirstNameLabel.AutoSize = true;
+            this.SignUserFirstNameLabel.Location = new System.Drawing.Point(99, 56);
+            this.SignUserFirstNameLabel.Name = "SignUserFirstNameLabel";
+            this.SignUserFirstNameLabel.Size = new System.Drawing.Size(32, 13);
+            this.SignUserFirstNameLabel.TabIndex = 0;
+            this.SignUserFirstNameLabel.Text = "Име:";
+            // 
+            // InfoFormTab
+            // 
+            this.InfoFormTab.Controls.Add(this.groupBox3);
+            this.InfoFormTab.Location = new System.Drawing.Point(4, 22);
+            this.InfoFormTab.Name = "InfoFormTab";
+            this.InfoFormTab.Size = new System.Drawing.Size(567, 288);
+            this.InfoFormTab.TabIndex = 3;
+            this.InfoFormTab.Text = "Информация за задължения";
+            this.InfoFormTab.UseVisualStyleBackColor = true;
             // 
             // groupBox3
             // 
@@ -468,79 +471,13 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Информация за задължения";
             // 
-            // InfoOblFirstNameLabel
+            // InfoOblResultRichBox
             // 
-            this.InfoOblFirstNameLabel.AutoSize = true;
-            this.InfoOblFirstNameLabel.Location = new System.Drawing.Point(117, 38);
-            this.InfoOblFirstNameLabel.Name = "InfoOblFirstNameLabel";
-            this.InfoOblFirstNameLabel.Size = new System.Drawing.Size(32, 13);
-            this.InfoOblFirstNameLabel.TabIndex = 0;
-            this.InfoOblFirstNameLabel.Text = "Име:";
-            // 
-            // InfoOblLNameLabel
-            // 
-            this.InfoOblLNameLabel.AutoSize = true;
-            this.InfoOblLNameLabel.Location = new System.Drawing.Point(90, 64);
-            this.InfoOblLNameLabel.Name = "InfoOblLNameLabel";
-            this.InfoOblLNameLabel.Size = new System.Drawing.Size(59, 13);
-            this.InfoOblLNameLabel.TabIndex = 1;
-            this.InfoOblLNameLabel.Text = "Фамилия:";
-            // 
-            // InfoOblClientNLabel
-            // 
-            this.InfoOblClientNLabel.AutoSize = true;
-            this.InfoOblClientNLabel.Location = new System.Drawing.Point(47, 117);
-            this.InfoOblClientNLabel.Name = "InfoOblClientNLabel";
-            this.InfoOblClientNLabel.Size = new System.Drawing.Size(101, 13);
-            this.InfoOblClientNLabel.TabIndex = 2;
-            this.InfoOblClientNLabel.Text = "Клиентски Номер:";
-            // 
-            // InfoOblEGNLabel
-            // 
-            this.InfoOblEGNLabel.AutoSize = true;
-            this.InfoOblEGNLabel.Location = new System.Drawing.Point(117, 90);
-            this.InfoOblEGNLabel.Name = "InfoOblEGNLabel";
-            this.InfoOblEGNLabel.Size = new System.Drawing.Size(31, 13);
-            this.InfoOblEGNLabel.TabIndex = 3;
-            this.InfoOblEGNLabel.Text = "ЕГН:";
-            // 
-            // InfoOblFirstNameField
-            // 
-            this.InfoOblFirstNameField.Location = new System.Drawing.Point(155, 35);
-            this.InfoOblFirstNameField.Name = "InfoOblFirstNameField";
-            this.InfoOblFirstNameField.Size = new System.Drawing.Size(283, 20);
-            this.InfoOblFirstNameField.TabIndex = 4;
-            // 
-            // InfoOblLastNameField
-            // 
-            this.InfoOblLastNameField.Location = new System.Drawing.Point(155, 61);
-            this.InfoOblLastNameField.Name = "InfoOblLastNameField";
-            this.InfoOblLastNameField.Size = new System.Drawing.Size(283, 20);
-            this.InfoOblLastNameField.TabIndex = 5;
-            this.InfoOblLastNameField.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
-            // 
-            // InfoOblEgnField
-            // 
-            this.InfoOblEgnField.Location = new System.Drawing.Point(155, 87);
-            this.InfoOblEgnField.Name = "InfoOblEgnField";
-            this.InfoOblEgnField.Size = new System.Drawing.Size(283, 20);
-            this.InfoOblEgnField.TabIndex = 6;
-            // 
-            // InfoOblCliNumField
-            // 
-            this.InfoOblCliNumField.Location = new System.Drawing.Point(155, 114);
-            this.InfoOblCliNumField.Name = "InfoOblCliNumField";
-            this.InfoOblCliNumField.Size = new System.Drawing.Size(283, 20);
-            this.InfoOblCliNumField.TabIndex = 7;
-            // 
-            // InfoOblGetInfoBtn
-            // 
-            this.InfoOblGetInfoBtn.Location = new System.Drawing.Point(155, 141);
-            this.InfoOblGetInfoBtn.Name = "InfoOblGetInfoBtn";
-            this.InfoOblGetInfoBtn.Size = new System.Drawing.Size(75, 23);
-            this.InfoOblGetInfoBtn.TabIndex = 8;
-            this.InfoOblGetInfoBtn.Text = "Изискай";
-            this.InfoOblGetInfoBtn.UseVisualStyleBackColor = true;
+            this.InfoOblResultRichBox.Location = new System.Drawing.Point(155, 177);
+            this.InfoOblResultRichBox.Name = "InfoOblResultRichBox";
+            this.InfoOblResultRichBox.Size = new System.Drawing.Size(283, 92);
+            this.InfoOblResultRichBox.TabIndex = 10;
+            this.InfoOblResultRichBox.Text = "";
             // 
             // InfoOblClrBtn
             // 
@@ -551,13 +488,79 @@
             this.InfoOblClrBtn.Text = "Изчисти";
             this.InfoOblClrBtn.UseVisualStyleBackColor = true;
             // 
-            // InfoOblResultRichBox
+            // InfoOblGetInfoBtn
             // 
-            this.InfoOblResultRichBox.Location = new System.Drawing.Point(155, 177);
-            this.InfoOblResultRichBox.Name = "InfoOblResultRichBox";
-            this.InfoOblResultRichBox.Size = new System.Drawing.Size(283, 92);
-            this.InfoOblResultRichBox.TabIndex = 10;
-            this.InfoOblResultRichBox.Text = "";
+            this.InfoOblGetInfoBtn.Location = new System.Drawing.Point(155, 141);
+            this.InfoOblGetInfoBtn.Name = "InfoOblGetInfoBtn";
+            this.InfoOblGetInfoBtn.Size = new System.Drawing.Size(75, 23);
+            this.InfoOblGetInfoBtn.TabIndex = 8;
+            this.InfoOblGetInfoBtn.Text = "Изискай";
+            this.InfoOblGetInfoBtn.UseVisualStyleBackColor = true;
+            // 
+            // InfoOblCliNumField
+            // 
+            this.InfoOblCliNumField.Location = new System.Drawing.Point(155, 114);
+            this.InfoOblCliNumField.Name = "InfoOblCliNumField";
+            this.InfoOblCliNumField.Size = new System.Drawing.Size(283, 20);
+            this.InfoOblCliNumField.TabIndex = 7;
+            // 
+            // InfoOblEgnField
+            // 
+            this.InfoOblEgnField.Location = new System.Drawing.Point(155, 87);
+            this.InfoOblEgnField.Name = "InfoOblEgnField";
+            this.InfoOblEgnField.Size = new System.Drawing.Size(283, 20);
+            this.InfoOblEgnField.TabIndex = 6;
+            // 
+            // InfoOblLastNameField
+            // 
+            this.InfoOblLastNameField.Location = new System.Drawing.Point(155, 61);
+            this.InfoOblLastNameField.Name = "InfoOblLastNameField";
+            this.InfoOblLastNameField.Size = new System.Drawing.Size(283, 20);
+            this.InfoOblLastNameField.TabIndex = 5;
+            this.InfoOblLastNameField.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            // 
+            // InfoOblFirstNameField
+            // 
+            this.InfoOblFirstNameField.Location = new System.Drawing.Point(155, 35);
+            this.InfoOblFirstNameField.Name = "InfoOblFirstNameField";
+            this.InfoOblFirstNameField.Size = new System.Drawing.Size(283, 20);
+            this.InfoOblFirstNameField.TabIndex = 4;
+            // 
+            // InfoOblEGNLabel
+            // 
+            this.InfoOblEGNLabel.AutoSize = true;
+            this.InfoOblEGNLabel.Location = new System.Drawing.Point(117, 90);
+            this.InfoOblEGNLabel.Name = "InfoOblEGNLabel";
+            this.InfoOblEGNLabel.Size = new System.Drawing.Size(31, 13);
+            this.InfoOblEGNLabel.TabIndex = 3;
+            this.InfoOblEGNLabel.Text = "ЕГН:";
+            // 
+            // InfoOblClientNLabel
+            // 
+            this.InfoOblClientNLabel.AutoSize = true;
+            this.InfoOblClientNLabel.Location = new System.Drawing.Point(47, 117);
+            this.InfoOblClientNLabel.Name = "InfoOblClientNLabel";
+            this.InfoOblClientNLabel.Size = new System.Drawing.Size(101, 13);
+            this.InfoOblClientNLabel.TabIndex = 2;
+            this.InfoOblClientNLabel.Text = "Клиентски Номер:";
+            // 
+            // InfoOblLNameLabel
+            // 
+            this.InfoOblLNameLabel.AutoSize = true;
+            this.InfoOblLNameLabel.Location = new System.Drawing.Point(90, 64);
+            this.InfoOblLNameLabel.Name = "InfoOblLNameLabel";
+            this.InfoOblLNameLabel.Size = new System.Drawing.Size(59, 13);
+            this.InfoOblLNameLabel.TabIndex = 1;
+            this.InfoOblLNameLabel.Text = "Фамилия:";
+            // 
+            // InfoOblFirstNameLabel
+            // 
+            this.InfoOblFirstNameLabel.AutoSize = true;
+            this.InfoOblFirstNameLabel.Location = new System.Drawing.Point(117, 38);
+            this.InfoOblFirstNameLabel.Name = "InfoOblFirstNameLabel";
+            this.InfoOblFirstNameLabel.Size = new System.Drawing.Size(32, 13);
+            this.InfoOblFirstNameLabel.TabIndex = 0;
+            this.InfoOblFirstNameLabel.Text = "Име:";
             // 
             // AdministrationPanel
             // 
@@ -576,9 +579,9 @@
             this.SignOblGroupBox.ResumeLayout(false);
             this.SignOblGroupBox.PerformLayout();
             this.SignUserTab.ResumeLayout(false);
-            this.InfoFormTab.ResumeLayout(false);
             this.SignUserGroupBox.ResumeLayout(false);
             this.SignUserGroupBox.PerformLayout();
+            this.InfoFormTab.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
@@ -622,7 +625,7 @@
         private System.Windows.Forms.TextBox SignUserLastNameField;
         private System.Windows.Forms.TextBox SignUserFirstNameField;
         private System.Windows.Forms.Button SignUserClrBtn;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox GenClientNSignUser;
         private System.Windows.Forms.Label SignUserGeneratedClientNumberLabel;
         private System.Windows.Forms.Button SignUserButton;
         private System.Windows.Forms.GroupBox groupBox3;

@@ -52,7 +52,6 @@ namespace CashierSystem
         {
             CashierRepository cashier = new CashierRepository();
 
-
             /******************************************************************************************
             **                                   Get field values                                    **
             ******************************************************************************************/
@@ -69,16 +68,12 @@ namespace CashierSystem
             **                                   Get model values                                    **
             ******************************************************************************************/
 
-            //Get data of Cashier table colomn user name.
+            //Get whole data of user (user name and pass).
 
-            var ModelName = cashier.GetCashier();
-
-            //Get data of Cashier table colomn password.
-
-            var ModelPass = cashier.GetCashier();
+            var UserNamePass = cashier.GetCashier().FirstOrDefault(x => x.cashier_user_name == FieldName && x.cashier_password == FieldPass);
 
             /******************************************************************************************
-            **                              Check field and model values                             **
+            **                                   Log in proccessing                                  **
             ******************************************************************************************/
 
             // Checking empty fields
@@ -89,15 +84,20 @@ namespace CashierSystem
             } 
             else
             {
-                if (FieldName.Equals(ModelName) || FieldPass.Equals(ModelPass))
+                // Check user name and pass.
+
+                if (UserNamePass != null)
                 {
-                    // Check model values with fields.
+                    //If there are user name and password. Program will proceed to Admin panel.
+
                     this.Hide();
                     AdministrationPanel adminPanel = new AdministrationPanel();
                     adminPanel.ShowDialog();
                 }
                 else
                 {
+                    //Else message will show
+
                     MessageBox.Show("Въвели сте грешен user name или парола !");
                 }
             }
@@ -109,31 +109,75 @@ namespace CashierSystem
         {
             var context = new CashierSystemEntities();
 
+            /******************************************************************************************
+            **                           Getting  values in registration form                        **
+            ******************************************************************************************/
+
+            // Get value in registration form – text field first name.
             var FirstNameReg = NameCashierRegField.Text.ToString();
+
+            // Get value in registration form – text field last name.
             var LastNameReg = LnameCashierRegField.Text.ToString();
+
+            // Get value in registration form – text field user name.
             var UserNameReg = UserNameCashierRegField.Text.ToString();
+
+            // Get value in registration form – text field password.
             var PassReg = PasswordCashierRegField.Text.ToString();
+
+            // Get value in registration form – text field confirm password.
             var PassConfig = ConfirmPassCashierRegFiedl.Text.ToString();
 
+            /******************************************************************************************
+            **                                   Getting data model                                  **
+            ******************************************************************************************/
+
+            // Object newCashier of type CashierRepository.
             CashierRepository newCashier = new CashierRepository();
 
+            // Get only user name from table Cashier.
+            var onlyUserName = context.Cashier.FirstOrDefault(un => un.cashier_user_name == UserNameReg);
+
+            /******************************************************************************************
+            **                                Registration proccessing                               **
+            ******************************************************************************************/
+
+            // Check if any field is empty. 
             if (FirstNameReg.Length == 0 || LastNameReg.Length == 0 || UserNameReg.Length == 0 || PassReg.Length == 0 || PassConfig.Length == 0)
             {
-                MessageBox.Show("Не сте въвели някое от полетата");
+                // If there is empty field, it shows message.
+                MessageBox.Show("Не сте въвели някое от полетата!");
             }
             else
             {
+                // Check password and confirm password match. 
                 if (PassReg.Equals(PassConfig))
                 {
-                    newCashier.AddCashier(FirstNameReg, LastNameReg, UserNameReg, PassReg);
-                    FirstNameReg = "";
-                    LastNameReg = "";
-                    UserNameReg = "";
-                    PassReg = "";
-                    PassConfig = "";
+                    // Check is user exist
+                    if (onlyUserName != null)
+                    {
+                        // Return message that user exists
+                        MessageBox.Show("Съществува такъв потребител ! Сменете потребителското име");
+
+                    }else
+                    {
+                        // Add to table new cashier
+                        newCashier.AddCashier(FirstNameReg, LastNameReg, UserNameReg, PassReg);
+
+                        // Clear all fields
+                        NameCashierRegField.Text = "";
+                        LnameCashierRegField.Text = "";
+                        UserNameCashierRegField.Text = "";
+                        PasswordCashierRegField.Text = "";
+                        ConfirmPassCashierRegFiedl.Text = "";
+
+                        // Confirmed record 
+                        MessageBox.Show("Успешен запис !");
+                    }
                 }
                 else
                 {
+                    // If there is no matching of confirm pass and pass, shows message.
                     MessageBox.Show("Паролите не съвпадат !");
                 }
             }
@@ -149,6 +193,21 @@ namespace CashierSystem
         private void PasswordCashierLogField_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void ClearButtonReg_Click(object sender, EventArgs e)
+        {
+            /******************************************************************************************
+            **                               Clear Button Functionality                              **
+            ******************************************************************************************/
+
+            // Clear all fields
+
+            NameCashierRegField.Text = "";
+            LnameCashierRegField.Text = "";
+            UserNameCashierRegField.Text = "";
+            PasswordCashierRegField.Text = "";
+            ConfirmPassCashierRegFiedl.Text = "";
         }
     }
 }

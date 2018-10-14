@@ -21,6 +21,7 @@ namespace CashSys.Controller
             var context = new CashierSystemEntities();
 
             var cashier = context.Cashier.ToList();
+            
 
             return cashier;
         }
@@ -32,16 +33,22 @@ namespace CashSys.Controller
         {
             var context = new CashierSystemEntities();
 
-            Cashier addNewCashier = context.Cashier.Add
+            var include = context.Cashier.Include("CashierClientTable").Where(x => x.cashier_user_name == userName);
+
+            
+            Cashier newCashier = context.Cashier.Add
                 (
                 new Cashier
                 {
                     cashier_first_name = FirstName,
                     cashier_last_name = LastName,
                     cashier_user_name = userName,
-                    cashier_password = Pass 
+                    cashier_password = Pass
+
                 }
                 );
+            
+     
 
             context.SaveChanges();
         }
