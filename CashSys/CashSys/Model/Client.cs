@@ -16,8 +16,8 @@ namespace CashSys.Model
     {
         public Client()
         {
-            this.Obligations = new HashSet<Obligations>();
-            this.Cashier = new HashSet<Cashier>();
+            this.Obligations = new List<Obligations>();
+            this.Cashier = new List<Cashier>();
         }
     
         public int client_serial_number { get; set; }

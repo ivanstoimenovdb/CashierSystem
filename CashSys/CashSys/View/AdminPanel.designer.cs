@@ -207,6 +207,7 @@
             this.ConfirmPaymentsButton.TabIndex = 7;
             this.ConfirmPaymentsButton.Text = "Впиши плащане";
             this.ConfirmPaymentsButton.UseVisualStyleBackColor = true;
+            this.ConfirmPaymentsButton.Click += new System.EventHandler(this.ConfirmPaymentsButton_Click);
             // 
             // ClientNumberPaymentsField
             // 
