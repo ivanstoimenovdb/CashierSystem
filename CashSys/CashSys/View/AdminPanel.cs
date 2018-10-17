@@ -63,6 +63,11 @@ namespace CashierSystem.View
 
             var EgnCheck = context.Client.FirstOrDefault(egn => egn.client_egn == EgnInt);
 
+            /******************************************************************************************
+            **                      Get from the model generated client number                       **
+            ******************************************************************************************/
+
+            var Client = 
 
             /******************************************************************************************
             **                                   Interact with DB                                    **
@@ -93,19 +98,12 @@ namespace CashierSystem.View
                         client_egn = EgnInt
                     });
 
-                /******************************************************************************************
-                **                      Get from the model generated client number                       **
-                ******************************************************************************************/
-
-                var ClientNumber = context.Client.FirstOrDefault(c => c.client_egn == EgnInt).client_serial_number;
-
                 //Clear all fields
                 SignUserFirstNameField.Text = "";
                 SignUserLastNameField.Text = "";
                 SignUserEgnField.Text = "";
 
-                // Render the serial number of client
-                GenClientNSignUser.Text = ClientNumber.ToString();
+                GenClientNSignUser.Text = ClientNumber;
 
                 MessageBox.Show("Успешен запис !");
 
@@ -128,11 +126,6 @@ namespace CashierSystem.View
             SignUserFirstNameField.Text = "";
             SignUserLastNameField.Text = "";
             SignUserEgnField.Text = "";
-        }
-
-        private void ConfirmPaymentsButton_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

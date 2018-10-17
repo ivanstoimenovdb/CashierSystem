@@ -23,7 +23,7 @@ warning 6002: The table/view 'CashierSystem.dbo.CashierClientTable' does not hav
             <PropertyRef Name="client_id" />
             <PropertyRef Name="cashier_id" />
           </Key>
-          <Property Name="client_id" Type="bigint" Nullable="false" />
+          <Property Name="client_id" Type="int" Nullable="false" />
           <Property Name="cashier_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Category">
@@ -37,7 +37,7 @@ warning 6002: The table/view 'CashierSystem.dbo.CashierClientTable' does not hav
           <Key>
             <PropertyRef Name="client_serial_number" />
           </Key>
-          <Property Name="client_serial_number" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="client_serial_number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="client_egn" Type="int" Nullable="false" />
           <Property Name="client_first_name" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="client_last_name" Type="varchar" MaxLength="60" Nullable="false" />
@@ -49,7 +49,7 @@ warning 6002: The table/view 'CashierSystem.dbo.ClientObligationTable' does not 
             <PropertyRef Name="client_id" />
             <PropertyRef Name="obligation_id" />
           </Key>
-          <Property Name="client_id" Type="bigint" Nullable="false" />
+          <Property Name="client_id" Type="int" Nullable="false" />
           <Property Name="obligation_id" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
