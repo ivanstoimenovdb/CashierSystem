@@ -57,6 +57,7 @@
     <Compile Include="Controller\CashierRepository.cs" />
     <Compile Include="Controller\ClientRepository.cs" />
     <Compile Include="Controller\ObligationsRepository.cs" />
+    <Compile Include="Controller\PaymentsRepository.cs" />
     <Compile Include="Model\Cashier.cs">
       <DependentUpon>CashSysDataModel.tt</DependentUpon>
     </Compile>
@@ -96,14 +97,14 @@
     <Compile Include="Model\sp_helpdiagrams_Result.cs">
       <DependentUpon>CashSysDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Status.cs">
+      <DependentUpon>CashSysDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\sysdiagrams.cs">
       <DependentUpon>CashSysDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\Status.cs">
-      <DependentUpon>CashSysDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="View\AdminPanel.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -44,6 +44,8 @@
             this.ClientNumber = new System.Windows.Forms.Label();
             this.SignObligationsTab = new System.Windows.Forms.TabPage();
             this.SignOblGroupBox = new System.Windows.Forms.GroupBox();
+            this.HasToPaidFieldSignObl = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.ClearSignOblBtn = new System.Windows.Forms.Button();
             this.ConfirmSignOblBtn = new System.Windows.Forms.Button();
             this.CategoryOblSignOblField = new System.Windows.Forms.TextBox();
@@ -207,6 +209,7 @@
             this.ConfirmPaymentsButton.TabIndex = 7;
             this.ConfirmPaymentsButton.Text = "Впиши плащане";
             this.ConfirmPaymentsButton.UseVisualStyleBackColor = true;
+            this.ConfirmPaymentsButton.Click += new System.EventHandler(this.ConfirmPaymentsButton_Click);
             // 
             // ClientNumberPaymentsField
             // 
@@ -237,6 +240,8 @@
             // 
             // SignOblGroupBox
             // 
+            this.SignOblGroupBox.Controls.Add(this.HasToPaidFieldSignObl);
+            this.SignOblGroupBox.Controls.Add(this.label8);
             this.SignOblGroupBox.Controls.Add(this.ClearSignOblBtn);
             this.SignOblGroupBox.Controls.Add(this.ConfirmSignOblBtn);
             this.SignOblGroupBox.Controls.Add(this.CategoryOblSignOblField);
@@ -253,9 +258,26 @@
             this.SignOblGroupBox.TabStop = false;
             this.SignOblGroupBox.Text = "Вписване";
             // 
+            // HasToPaidFieldSignObl
+            // 
+            this.HasToPaidFieldSignObl.Location = new System.Drawing.Point(209, 134);
+            this.HasToPaidFieldSignObl.Name = "HasToPaidFieldSignObl";
+            this.HasToPaidFieldSignObl.Size = new System.Drawing.Size(257, 20);
+            this.HasToPaidFieldSignObl.TabIndex = 10;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(103, 134);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(88, 13);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "Дължима сума:";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
+            // 
             // ClearSignOblBtn
             // 
-            this.ClearSignOblBtn.Location = new System.Drawing.Point(347, 159);
+            this.ClearSignOblBtn.Location = new System.Drawing.Point(347, 169);
             this.ClearSignOblBtn.Name = "ClearSignOblBtn";
             this.ClearSignOblBtn.Size = new System.Drawing.Size(119, 23);
             this.ClearSignOblBtn.TabIndex = 8;
@@ -264,12 +286,13 @@
             // 
             // ConfirmSignOblBtn
             // 
-            this.ConfirmSignOblBtn.Location = new System.Drawing.Point(209, 159);
+            this.ConfirmSignOblBtn.Location = new System.Drawing.Point(209, 169);
             this.ConfirmSignOblBtn.Name = "ConfirmSignOblBtn";
             this.ConfirmSignOblBtn.Size = new System.Drawing.Size(120, 23);
             this.ConfirmSignOblBtn.TabIndex = 7;
             this.ConfirmSignOblBtn.Text = "Впиши задължение";
             this.ConfirmSignOblBtn.UseVisualStyleBackColor = true;
+            this.ConfirmSignOblBtn.Click += new System.EventHandler(this.ConfirmSignOblBtn_Click);
             // 
             // CategoryOblSignOblField
             // 
@@ -496,6 +519,7 @@
             this.InfoOblGetInfoBtn.TabIndex = 8;
             this.InfoOblGetInfoBtn.Text = "Изискай";
             this.InfoOblGetInfoBtn.UseVisualStyleBackColor = true;
+            this.InfoOblGetInfoBtn.Click += new System.EventHandler(this.InfoOblGetInfoBtn_Click);
             // 
             // InfoOblCliNumField
             // 
@@ -640,5 +664,7 @@
         private System.Windows.Forms.Button InfoOblClrBtn;
         private System.Windows.Forms.Button InfoOblGetInfoBtn;
         private System.Windows.Forms.RichTextBox InfoOblResultRichBox;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox HasToPaidFieldSignObl;
     }
 }

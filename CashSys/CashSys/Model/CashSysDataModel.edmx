@@ -23,7 +23,7 @@ warning 6002: The table/view 'CashierSystem.dbo.CashierClientTable' does not hav
             <PropertyRef Name="client_id" />
             <PropertyRef Name="cashier_id" />
           </Key>
-          <Property Name="client_id" Type="int" Nullable="false" />
+          <Property Name="client_id" Type="bigint" Nullable="false" />
           <Property Name="cashier_id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Category">
@@ -37,7 +37,7 @@ warning 6002: The table/view 'CashierSystem.dbo.CashierClientTable' does not hav
           <Key>
             <PropertyRef Name="client_serial_number" />
           </Key>
-          <Property Name="client_serial_number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="client_serial_number" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="client_egn" Type="int" Nullable="false" />
           <Property Name="client_first_name" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="client_last_name" Type="varchar" MaxLength="60" Nullable="false" />
@@ -49,7 +49,7 @@ warning 6002: The table/view 'CashierSystem.dbo.ClientObligationTable' does not 
             <PropertyRef Name="client_id" />
             <PropertyRef Name="obligation_id" />
           </Key>
-          <Property Name="client_id" Type="int" Nullable="false" />
+          <Property Name="client_id" Type="bigint" Nullable="false" />
           <Property Name="obligation_id" Type="int" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
@@ -59,8 +59,8 @@ warning 6002: The table/view 'CashierSystem.dbo.ObligationPaymentTable' does not
             <PropertyRef Name="payment_id" />
             <PropertyRef Name="obligation_id" />
           </Key>
-          <Property Name="payment_id" Type="int" Nullable="false" />
-          <Property Name="obligation_id" Type="int" Nullable="false" />
+          <Property Name="payment_id" Nullable="false" Type="int" />
+          <Property Name="obligation_id" Nullable="false" Type="int" />
         </EntityType>
         <EntityType Name="Obligations">
           <Key>
@@ -69,7 +69,7 @@ warning 6002: The table/view 'CashierSystem.dbo.ObligationPaymentTable' does not
           <Property Name="obligation_number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="obligation_category_id" Type="int" Nullable="false" />
           <Property Name="obligation_name" Type="varchar" MaxLength="40" Nullable="false" />
-          <Property Name="obligation_note" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="obligation_note" Type="varchar" MaxLength="50" />
           <Property Name="obligation_payments" Type="money" Nullable="false" />
           <Property Name="obligation_status_id" Type="int" />
         </EntityType>
@@ -106,7 +106,9 @@ warning 6002: The table/view 'CashierSystem.dbo.ObligationPaymentTable' does not
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <Association Name="belongsTo">
-          <End Role="Obligations" Type="Self.Obligations" Multiplicity="1" />
+          <End Role="Obligations" Type="Self.Obligations" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ClientObligationTable" Type="Self.ClientObligationTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Obligations">
@@ -118,7 +120,9 @@ warning 6002: The table/view 'CashierSystem.dbo.ObligationPaymentTable' does not
           </ReferentialConstraint>
         </Association>
         <Association Name="has">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ClientObligationTable" Type="Self.ClientObligationTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
@@ -130,7 +134,9 @@ warning 6002: The table/view 'CashierSystem.dbo.ObligationPaymentTable' does not
           </ReferentialConstraint>
         </Association>
         <Association Name="hasCategory">
-          <End Role="Category" Type="Self.Category" Multiplicity="1" />
+          <End Role="Category" Type="Self.Category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Obligations" Type="Self.Obligations" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
@@ -142,8 +148,10 @@ warning 6002: The table/view 'CashierSystem.dbo.ObligationPaymentTable' does not
           </ReferentialConstraint>
         </Association>
         <Association Name="hasPayed">
-          <End Role="Obligations" Type="Self.Obligations" Multiplicity="1" />
-          <End Role="ObligationPaymentTable" Type="Self.ObligationPaymentTable" Multiplicity="*" />
+          <End Type="Self.Obligations" Multiplicity="1" Role="Obligations">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Self.ObligationPaymentTable" Multiplicity="*" Role="ObligationPaymentTable" />
           <ReferentialConstraint>
             <Principal Role="Obligations">
               <PropertyRef Name="obligation_number" />
@@ -154,7 +162,9 @@ warning 6002: The table/view 'CashierSystem.dbo.ObligationPaymentTable' does not
           </ReferentialConstraint>
         </Association>
         <Association Name="hasStatus">
-          <End Role="ObligationStatusTable" Type="Self.ObligationStatusTable" Multiplicity="0..1" />
+          <End Role="ObligationStatusTable" Type="Self.ObligationStatusTable" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Obligations" Type="Self.Obligations" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ObligationStatusTable">
@@ -180,7 +190,9 @@ warning 6002: The table/view 'CashierSystem.dbo.ObligationPaymentTable' does not
           </ReferentialConstraint>
         </Association>
         <Association Name="IsStatus">
-          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Status" Type="Self.Status" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="ObligationStatusTable" Type="Self.ObligationStatusTable" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Status">
@@ -192,8 +204,10 @@ warning 6002: The table/view 'CashierSystem.dbo.ObligationPaymentTable' does not
           </ReferentialConstraint>
         </Association>
         <Association Name="payed">
-          <End Role="payments" Type="Self.payments" Multiplicity="1" />
-          <End Role="ObligationPaymentTable" Type="Self.ObligationPaymentTable" Multiplicity="*" />
+          <End Type="Self.payments" Multiplicity="1" Role="payments">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Self.ObligationPaymentTable" Multiplicity="*" Role="ObligationPaymentTable" />
           <ReferentialConstraint>
             <Principal Role="payments">
               <PropertyRef Name="payment_id" />
@@ -288,8 +302,8 @@ FROM [dbo].[ObligationPaymentTable] AS [ObligationPaymentTable]</DefiningQuery>
             <End Role="Obligations" EntitySet="Obligations" />
           </AssociationSet>
           <AssociationSet Name="hasPayed" Association="Self.hasPayed">
-            <End Role="Obligations" EntitySet="Obligations" />
-            <End Role="ObligationPaymentTable" EntitySet="ObligationPaymentTable" />
+            <End EntitySet="Obligations" Role="Obligations" />
+            <End EntitySet="ObligationPaymentTable" Role="ObligationPaymentTable" />
           </AssociationSet>
           <AssociationSet Name="hasStatus" Association="Self.hasStatus">
             <End Role="ObligationStatusTable" EntitySet="ObligationStatusTable" />
@@ -304,8 +318,8 @@ FROM [dbo].[ObligationPaymentTable] AS [ObligationPaymentTable]</DefiningQuery>
             <End Role="ObligationStatusTable" EntitySet="ObligationStatusTable" />
           </AssociationSet>
           <AssociationSet Name="payed" Association="Self.payed">
-            <End Role="payments" EntitySet="payments" />
-            <End Role="ObligationPaymentTable" EntitySet="ObligationPaymentTable" />
+            <End EntitySet="payments" Role="payments" />
+            <End EntitySet="ObligationPaymentTable" Role="ObligationPaymentTable" />
           </AssociationSet>
           <AssociationSet Name="serves" Association="Self.serves">
             <End Role="Client" EntitySet="Client" />
@@ -354,7 +368,7 @@ FROM [dbo].[ObligationPaymentTable] AS [ObligationPaymentTable]</DefiningQuery>
           <Property Name="obligation_number" Type="Int32" Nullable="false" />
           <Property Name="obligation_category_id" Type="Int32" Nullable="false" />
           <Property Name="obligation_name" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="obligation_note" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="obligation_note" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="obligation_payments" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="obligation_status_id" Type="Int32" />
           <NavigationProperty Name="Category" Relationship="Self.hasCategory" FromRole="Obligations" ToRole="Category" />
@@ -429,8 +443,8 @@ FROM [dbo].[ObligationPaymentTable] AS [ObligationPaymentTable]</DefiningQuery>
           <End Role="Client" Type="Self.Client" Multiplicity="*" />
         </Association>
         <Association Name="ObligationPaymentTable">
-          <End Role="Obligations" Type="Self.Obligations" Multiplicity="*" />
-          <End Role="payments" Type="Self.payments" Multiplicity="*" />
+          <End Type="Self.Obligations" Multiplicity="*" Role="Obligations" />
+          <End Type="Self.payments" Multiplicity="*" Role="payments" />
         </Association>
         <EntityContainer Name="CashierSystemEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Cashier" EntityType="Self.Cashier" />
@@ -457,8 +471,8 @@ FROM [dbo].[ObligationPaymentTable] AS [ObligationPaymentTable]</DefiningQuery>
             <End Role="Client" EntitySet="Client" />
           </AssociationSet>
           <AssociationSet Name="ObligationPaymentTable" Association="Self.ObligationPaymentTable">
-            <End Role="Obligations" EntitySet="Obligations" />
-            <End Role="payments" EntitySet="payments" />
+            <End EntitySet="Obligations" Role="Obligations" />
+            <End EntitySet="payments" Role="payments" />
           </AssociationSet>
           <EntitySet Name="sysdiagramsSet" EntityType="CashierSystemModel.sysdiagrams" />
           <FunctionImport Name="sp_alterdiagram">
@@ -560,11 +574,11 @@ FROM [dbo].[ObligationPaymentTable] AS [ObligationPaymentTable]</DefiningQuery>
           <EntitySetMapping Name="Obligations">
             <EntityTypeMapping TypeName="CashierSystemModel.Obligations">
               <MappingFragment StoreEntitySet="Obligations">
+                <ScalarProperty Name="obligation_payments" ColumnName="obligation_payments" />
                 <ScalarProperty Name="obligation_number" ColumnName="obligation_number" />
                 <ScalarProperty Name="obligation_category_id" ColumnName="obligation_category_id" />
                 <ScalarProperty Name="obligation_name" ColumnName="obligation_name" />
                 <ScalarProperty Name="obligation_note" ColumnName="obligation_note" />
-                <ScalarProperty Name="obligation_payments" ColumnName="obligation_payments" />
                 <ScalarProperty Name="obligation_status_id" ColumnName="obligation_status_id" />
               </MappingFragment>
             </EntityTypeMapping>
